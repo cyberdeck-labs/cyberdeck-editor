@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' cde: data: https: http:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self'; connect-src 'self' cde:">
+<title>Cyberdeck Editor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="titlebar">
+  <div id="logo">CYBERDECK<b>//EDITOR</b></div>
+  <div id="vaultname"></div>
+  <button class="tbtn" id="btn-open" title="Vault öffnen">⌂ VAULT ÖFFNEN</button>
+  <button class="tbtn" id="btn-switch" title="Schnellwechsler (Strg+O)">⌕ NOTIZ <kbd>^O</kbd></button>
+  <button class="tbtn" id="btn-graph" title="Graph (Strg+G)">✶ GRAPH <kbd>^G</kbd></button>
+  <div class="drag"></div>
+  <div id="winbtns"><button id="wmin" title="Minimieren">–</button><button id="wmax" title="Maximieren">□</button><button id="wclose" title="Schließen">✕</button></div>
+</div>
+<div id="main">
+  <aside id="left">
+    <div id="lefttabs">
+      <button data-p="files" title="Dateien">DATEIEN</button>
+      <button data-p="search" title="Volltextsuche (Strg+Umschalt+F)">SUCHE</button>
+      <button data-p="tags" title="Tags">TAGS</button>
+    </div>
+    <div id="p-files" class="panel">
+      <div class="ptools"><span id="tree-count"></span><button id="new-note" title="Neue Notiz (Strg+N)">+ NOTIZ</button><button id="new-folder" title="Neuer Ordner">+ ORDNER</button><button id="collapse" title="Alle einklappen">⇤</button></div>
+      <div id="tree"></div>
+    </div>
+    <div id="p-search" class="panel hidden">
+      <input id="search-input" class="inp" placeholder="Volltextsuche … (#tag für Tags)" spellcheck="false">
+      <div id="search-results"></div>
+    </div>
+    <div id="p-tags" class="panel hidden"><div id="tag-list"></div></div>
+  </aside>
+  <section id="center">
+    <div id="tabbar"><div id="tabs"></div><button id="modebtn" class="tbtn" title="Vorschau umschalten (Strg+E)">◉ VORSCHAU</button></div>
+    <div id="views">
+      <div id="welcome">
+        <div class="wl-logo">CYBERDECK<b>//EDITOR</b></div>
+        <div id="welcome-novault">
+          <p>Öffne einen Ordner mit Markdown-Notizen – auch einen bestehenden Obsidian-Vault.</p>
+          <button class="btn pri big" id="welcome-open">VAULT ÖFFNEN</button>
+        </div>
+        <div id="welcome-vault" class="hidden">
+          <p id="welcome-stats"></p>
+          <div class="keys">
+            <span><kbd>Strg+O</kbd> Notiz öffnen</span><span><kbd>Strg+N</kbd> Neue Notiz</span><span><kbd>Strg+G</kbd> Graph</span>
+            <span><kbd>Strg+E</kbd> Vorschau</span><span><kbd>Strg+Umschalt+F</kbd> Suche</span><span><kbd>Strg+Tab</kbd> Tab wechseln</span>
+            <span><kbd>Strg+W</kbd> Tab schließen</span><span><kbd>Strg+Klick</kbd> Link folgen</span><span><kbd>[[</kbd> Link einfügen</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <aside id="right">
+    <div class="rh"><span>LOKALER GRAPH</span><span id="side-title"></span></div>
+    <div class="lg-tools">
+      <label>TIEFE <select id="depth"><option value="1">1</option><option value="2">2</option></select></label>
+      <label class="chk"><input type="checkbox" id="lg-ghosts" checked> GEISTER</label>
+      <button class="btn sm" id="lg-open">GLOBAL</button>
+    </div>
+    <canvas id="localgraph"></canvas>
+    <div class="rh"><span>BACKLINKS</span><span id="bl-count" class="cnt"></span></div>
+    <div id="backlinks" class="rlist"></div>
+    <div class="rh"><span>AUSGEHEND</span><span id="og-count" class="cnt"></span></div>
+    <div id="outgoing" class="rlist"></div>
+  </aside>
+</div>
+<div id="statusbar"><span id="st-file"></span><span id="st-save"></span><span class="fill"></span><span id="st-words"></span><span id="st-update" class="upd"></span><span id="st-ver"></span></div>
+<div id="modal-root"></div>
+<div id="ctxmenu"></div>
+<div id="toasts"></div>
+<script type="module" src="dist/app.js"></script>
+</body>
+</html>

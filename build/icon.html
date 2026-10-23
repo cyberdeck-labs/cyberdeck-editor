@@ -1,0 +1,49 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  html, body { margin:0; width:512px; height:512px; background:transparent; overflow:hidden; }
+  .tile { position:absolute; inset:16px; background:radial-gradient(circle at 50% 40%, #2a0616 0%, #10020a 55%, #07020a 100%);
+    clip-path:polygon(64px 0,100% 0,100% calc(100% - 64px),calc(100% - 64px) 100%,0 100%,0 64px); }
+  .scan { position:absolute; inset:16px; background:repeating-linear-gradient(to bottom, rgba(0,0,0,.28) 0 2px, transparent 2px 6px);
+    clip-path:polygon(64px 0,100% 0,100% calc(100% - 64px),calc(100% - 64px) 100%,0 100%,0 64px); }
+  svg { position:absolute; inset:0; }
+</style></head>
+<body>
+<div class="tile"></div>
+<svg width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <filter id="g" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="g2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <!-- Rahmen -->
+  <polygon points="80,16 496,16 496,432 432,496 16,496 16,80" fill="none" stroke="#ff2d3d" stroke-width="6" filter="url(#g)"/>
+  <!-- Dokument-Splitter -->
+  <polygon points="128,92 318,92 388,162 388,420 128,420" fill="rgba(60,240,255,.06)" stroke="#3cf0ff" stroke-width="9" stroke-linejoin="miter" filter="url(#g)"/>
+  <polyline points="318,92 318,162 388,162" fill="none" stroke="#3cf0ff" stroke-width="7" filter="url(#g2)"/>
+  <!-- Textzeilen -->
+  <g stroke="#3cf0ff" stroke-width="7" opacity=".45" stroke-linecap="square">
+    <line x1="160" y1="132" x2="270" y2="132"/><line x1="160" y1="156" x2="240" y2="156"/>
+  </g>
+  <!-- Knotengraph -->
+  <g stroke-width="5" filter="url(#g2)">
+    <line x1="190" y1="250" x2="300" y2="214" stroke="#3cf0ff"/>
+    <line x1="190" y1="250" x2="214" y2="356" stroke="#3cf0ff"/>
+    <line x1="300" y1="214" x2="330" y2="330" stroke="#ff2d3d"/>
+    <line x1="214" y1="356" x2="330" y2="330" stroke="#3cf0ff"/>
+    <line x1="300" y1="214" x2="214" y2="356" stroke="#ff2d3d" opacity=".8"/>
+    <line x1="330" y1="330" x2="430" y2="380" stroke="#ff2d3d" stroke-dasharray="10 8"/>
+  </g>
+  <g filter="url(#g)">
+    <circle cx="190" cy="250" r="19" fill="#3cf0ff"/>
+    <circle cx="300" cy="214" r="24" fill="#f7e733"/>
+    <circle cx="214" cy="356" r="16" fill="#3cf0ff"/>
+    <circle cx="330" cy="330" r="21" fill="#ff2d3d"/>
+    <circle cx="430" cy="380" r="13" fill="#07020a" stroke="#ff2d3d" stroke-width="5"/>
+  </g>
+  <!-- Klammern [[ ]] -->
+  <g fill="none" stroke="#f7e733" stroke-width="7" filter="url(#g2)" opacity=".9">
+    <polyline points="78,190 62,190 62,300 78,300"/><polyline points="96,206 82,206 82,284 96,284"/>
+  </g>
+</svg>
+<div class="scan"></div>
+</body></html>
